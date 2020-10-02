@@ -6,6 +6,5 @@ import com.example.whiterabbittask.base.BaseViewModel
 import com.example.whiterabbittask.room.EmployeeItem
 
 class EmployeeDetailsViewModel(application: Application) : BaseViewModel(application) {
-
-    val employeeItem = MutableLiveData<EmployeeItem>()
+    var employeeItem = MutableLiveData<EmployeeItem>()
 }

@@ -20,12 +20,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_16"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:text="@{detailsViewModel.employeeItem.name}"
             app:layout_constraintTop_toBottomOf="@id/image" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_16"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/txtName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

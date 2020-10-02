@@ -40,10 +40,40 @@ class EmployeeAdapter(
     }
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
-        holder.onBind(filterList[position], employeeFragment,listener)
+        holder.onBind(filterList[position], employeeFragment, listener)
     }
 
     override fun getItemCount(): Int = filterList.size
+
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    filterList = actualList
+                } else {
+                    val resultList = ArrayList<EmployeeItem>()
+                    for (row in actualList) {
+                        if (row.name!!.toLowerCase().contains(charSearch.toLowerCase())) {
+                            resultList.add(row)
+                        }
+                    }
+                    filterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = filterList
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filterList = results?.values as ArrayList<EmployeeItem>
+                notifyDataSetChanged()
+            }
+
+        }
+    }
 
     inner class EmployeeViewHolder(private val adapterEmployeeBinding: AdapterEmployeeBinding) :
         RecyclerView.ViewHolder(adapterEmployeeBinding.root) {
@@ -59,38 +89,9 @@ class EmployeeAdapter(
                 .load(employeeItem.profileImage)
                 .into(adapterEmployeeBinding.imgView)
 
-            adapterEmployeeBinding.txtName.setTag(R.id.txtName,employeeItem)
+            adapterEmployeeBinding.txtName.setTag(R.id.txtName, employeeItem)
             adapterEmployeeBinding.txtName.setOnClickListener(listener)
         }
     }
 
-
-override fun getFilter(): Filter {
-    return object : Filter() {
-        override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val charSearch = constraint.toString()
-            if (charSearch.isEmpty()) {
-                filterList = actualList
-            } else {
-                val resultList = ArrayList<EmployeeItem>()
-                for (row in actualList) {
-                    if (row.name!!.toLowerCase().contains(charSearch.toLowerCase())) {
-                        resultList.add(row)
-                    }
-                }
-                filterList = resultList
-            }
-            val filterResults = FilterResults()
-            filterResults.values = filterList
-            return filterResults
-        }
-
-        @Suppress("UNCHECKED_CAST")
-        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-            filterList = results?.values as ArrayList<EmployeeItem>
-            notifyDataSetChanged()
-        }
-
-    }
-}
 }

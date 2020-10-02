@@ -3,11 +3,13 @@ package com.example.whiterabbittask.room
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "employee_item")
 data class EmployeeItem(
+    @SerializedName("profile_image")
     val profileImage: String? = "",
     val website: String? = "",
     val phone: String? = null,
