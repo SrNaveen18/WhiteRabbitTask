@@ -3,7 +3,9 @@ package com.example.whiterabbittask.room
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+
 
 @Dao
 interface EmployeeDAO {
@@ -16,6 +18,6 @@ interface EmployeeDAO {
     @Query("DELETE FROM employee_item")
     fun deleteAllData()
 
-
-
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(order: List<EmployeeItem>)
 }

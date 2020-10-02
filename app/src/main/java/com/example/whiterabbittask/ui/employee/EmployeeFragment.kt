@@ -62,7 +62,7 @@ class EmployeeFragment : BaseFragment<FragmentEmployeeBinding, EmployeeViewModel
         showProgress()
         getViewModel()?.makeApiCall()?.observe(viewLifecycleOwner, {
             if (!it.isNullOrEmpty()) {
-                getViewModel()?.addEmployees(it)
+                getViewModel()?.addAll(it)
             }
             hideProgress()
         })

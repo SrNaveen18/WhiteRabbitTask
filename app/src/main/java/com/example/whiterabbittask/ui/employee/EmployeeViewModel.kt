@@ -19,15 +19,13 @@ class EmployeeViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-     fun addEmployees(employeeItem: List<EmployeeItem>) {
+    fun addAll(employeeItem: List<EmployeeItem>) {
         viewModelScope.launch {
-            employeeItem.forEach{
-                repository.addData(it)
-            }
+            repository.insertAll(employeeItem)
         }
     }
 
-    fun makeApiCall() = liveData{
+    fun makeApiCall() = liveData {
         emit(repository.fetchDataFromServer())
     }
 }

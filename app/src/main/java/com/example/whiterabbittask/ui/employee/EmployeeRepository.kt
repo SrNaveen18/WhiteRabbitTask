@@ -27,9 +27,16 @@ class EmployeeRepository(application: Application) {
         }
     }
 
+    suspend fun insertAll(employeeList : List<EmployeeItem>){
+        withContext(Dispatchers.IO){
+            employeeDAO?.insertAll(employeeList)
+        }
+    }
+
     fun getAllData() : LiveData<List<EmployeeItem>>? {
         return employeeDAO?.getAllData()
     }
+
 
     suspend fun fetchDataFromServer() : List<EmployeeItem>?{
        return withContext(Dispatchers.IO){
