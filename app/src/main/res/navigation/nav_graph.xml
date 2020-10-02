@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/employeeFragment">
+
+    <fragment
+        android:id="@+id/employeeFragment"
+        android:name="com.example.whiterabbittask.ui.employee.EmployeeFragment"
+        android:label="EmployeeFragment" >
+        <action
+            android:id="@+id/action_employeeFragment_to_employeeDetailsFragment"
+            app:destination="@id/employeeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeDetailsFragment"
+        android:name="com.example.whiterabbittask.ui.employeedetail.EmployeeDetailsFragment"
+        android:label="EmployeeDetailsFragment" >
+        <argument
+            android:name="EmployeeItem"
+            app:argType="com.example.whiterabbittask.room.EmployeeItem" />
+    </fragment>
+</navigation>

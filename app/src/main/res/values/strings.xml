@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WhiteRabbitTask</string>
+    <string name="hint_search_name">Search by name</string>
+</resources>
